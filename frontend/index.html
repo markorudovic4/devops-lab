@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DevOps Lab FE</title>
+  </head>
+  <body>
+    <h1>Frontend</h1>
+    <button id="btn">Pozovi backend</button>
+    <pre id="out">Klikni dugme…</pre>
+
+    <script>
+      document.getElementById("btn").onclick = async () => {
+        const out = document.getElementById("out");
+        out.textContent = "Loading...";
+        try {
+          const res = await fetch("http://localhost:8000/api/message");
+          const data = await res.json();
+          out.textContent = JSON.stringify(data, null, 2);
+        } catch (e) {
+          out.textContent = "ERROR: " + e;
+        }
+      };
+    </script>
+  </body>
+</html>
