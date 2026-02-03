@@ -54,8 +54,8 @@ jobs:
           ECR_REGISTRY_CLEAN="$(echo -n "$ECR_REGISTRY" | tr -d '\r\n' | xargs)"
           ECR_REPO_CLEAN="$(echo -n "$ECR_REPO" | tr -d '\r\n' | xargs)"
 
-          IMAGE_SHA="$ECR_REGISTRY/$ECR_REPO:$SHA"
-          IMAGE_LATEST="$ECR_REGISTRY/$ECR_REPO:latest"
+          IMAGE_SHA="$ECR_REGISTRY_CLEAN/$ECR_REPO_CLEAN:$SHA"
+          IMAGE_LATEST="$ECR_REGISTRY_CLEAN/$ECR_REPO_CLEAN:latest"
 
           docker build -t "$IMAGE_SHA" -t "$IMAGE_LATEST" -f backend/Dockerfile backend
           docker push "$IMAGE_SHA"
@@ -71,8 +71,8 @@ jobs:
           ECR_REGISTRY_CLEAN="$(echo -n "$ECR_REGISTRY" | tr -d '\r\n' | xargs)"
           ECR_REPO_CLEAN="$(echo -n "$ECR_REPO" | tr -d '\r\n' | xargs)"
 
-          IMAGE_SHA="$ECR_REGISTRY/$ECR_REPO:$SHA"
-          IMAGE_LATEST="$ECR_REGISTRY/$ECR_REPO:latest"
+          IMAGE_SHA="$ECR_REGISTRY_CLEAN/$ECR_REPO_CLEAN:$SHA"
+          IMAGE_LATEST="$ECR_REGISTRY_CLEAN/$ECR_REPO_CLEAN:latest"
 
           docker build -t "$IMAGE_SHA" -t "$IMAGE_LATEST" -f frontend/Dockerfile frontend
           docker push "$IMAGE_SHA"
