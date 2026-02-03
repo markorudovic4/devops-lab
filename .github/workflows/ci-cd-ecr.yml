@@ -50,6 +50,10 @@ jobs:
           ECR_REPO: ${{ secrets.ECR_REPOSITORY_BACKEND }}
           SHA: ${{ github.sha }}
         run: |
+          set -euo pipefail
+          ECR_REGISTRY_CLEAN="$(echo -n "$ECR_REGISTRY" | tr -d '\r\n' | xargs)"
+          ECR_REPO_CLEAN="$(echo -n "$ECR_REPO" | tr -d '\r\n' | xargs)"
+
           IMAGE_SHA="$ECR_REGISTRY/$ECR_REPO:$SHA"
           IMAGE_LATEST="$ECR_REGISTRY/$ECR_REPO:latest"
 
@@ -63,6 +67,10 @@ jobs:
           ECR_REPO: ${{ secrets.ECR_REPOSITORY_FRONTEND }}
           SHA: ${{ github.sha }}
         run: |
+          set -euo pipefail
+          ECR_REGISTRY_CLEAN="$(echo -n "$ECR_REGISTRY" | tr -d '\r\n' | xargs)"
+          ECR_REPO_CLEAN="$(echo -n "$ECR_REPO" | tr -d '\r\n' | xargs)"
+
           IMAGE_SHA="$ECR_REGISTRY/$ECR_REPO:$SHA"
           IMAGE_LATEST="$ECR_REGISTRY/$ECR_REPO:latest"
 
